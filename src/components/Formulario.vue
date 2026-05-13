@@ -1,3 +1,35 @@
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Formulario",
+  data () {
+    return {
+      tempoEmSegundos: 0,
+      cronometro: 0
+    }
+  },
+  computed: {
+    tempoDecorrido () : string {
+      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11,8)
+    }
+  },
+  methods: {
+    iniciar () {
+      // começar a contagem
+      // 1 seg = 1000 ms
+      this.cronometro = setInterval(() => {
+        this.tempoEmSegundos += 1        
+      }, 1000)
+    },
+    finalizar () {
+      clearInterval(this.cronometro)
+    }
+  }
+});
+</script>
+
+
 <template>
   <div class="box">
     <div class="columns">
@@ -38,34 +70,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "Formulário",
-  data () {
-    return {
-      tempoEmSegundos: 0,
-      cronometro: 0
-    }
-  },
-  computed: {
-    tempoDecorrido () : string {
-      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11,8)
-    }
-  },
-  methods: {
-    iniciar () {
-      // começar a contagem
-      // 1 seg = 1000 ms
-      this.cronometro = setInterval(() => {
-        this.tempoEmSegundos += 1        
-      }, 1000)
-    },
-    finalizar () {
-      clearInterval(this.cronometro)
-    }
-  }
-});
-</script>
