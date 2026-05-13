@@ -3,6 +3,8 @@ import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue'
 import FormularioFix from './components/Formulario.vue'
 import TarefaFix from './components/Tarefa.vue'
+import BoxFix from './components/Box.vue'
+import ITarefa from './interfaces/ITarefa'
 
 export default defineComponent({
   name: 'App',
@@ -10,23 +12,40 @@ export default defineComponent({
     BarraLateral,
     FormularioFix,
     TarefaFix,
+    BoxFix
+  },
+  data () {
+    return {
+      tarefas: [] as ITarefa[]
+    }
+  },
+  computed: {
+    listaEstaVazia () : boolean {
+      return this.tarefas.length === 0
+    }
+  },
+  methods: {
+    salvarTarefa (tarefa: ITarefa) {
+      this.tarefas.push(tarefa)
+    }
   }
 });
 </script>
+
 
 <template>
   <main class="columns is-gapless is-multiline">
     <div class="column is-one-quarter">
       <BarraLateral />
     </div>
-    <div class="column is-three-quarter">
-      <FormularioFix />
-      <div class="item">
-        <TarefaFix />
-        <TarefaFix />
-        <TarefaFix />
+    <div class="column is-three-quarter conteudo">
+      <FormularioFix @aoSalvarTarefa="salvarTarefa"/>
+      <div class="lista">
+        <TarefaFix v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa"/>
+        <BoxFix v-if="listaEstaVazia">
+          Você não está muito produtivo hoje :(
+        </BoxFix>
       </div>
-
     </div>
   </main>
 </template>
@@ -34,7 +53,18 @@ export default defineComponent({
 
 
 <style>
-.item{
+.lista {
   padding: 1.25rem;
+}
+main {
+  --bg-primario: #fff;
+  --texto-primario: #000;
+}
+main.modo-escuro {
+  --bg-primario: #2b2d42;
+  --texto-primario: #ddd;
+}
+.conteudo {
+  background-color: var(--bg-primario);
 }
 </style>
