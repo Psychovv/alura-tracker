@@ -7,7 +7,14 @@ export default defineComponent({
   components: { TemporizadorFix },
   methods: {
     FinalizarTarefa(tempoDecorrido: number): void {
-      console.log("Tarefa finalizada com tempo decorrido de: " + tempoDecorrido + " segundos")
+      console.log("Tarefa finalizada com tempo decorrido de: " + tempoDecorrido + " segundos");
+      console.log("Descrição da tarefa: " + this.descricao);
+      this.descricao = "";
+    }
+  },
+  data() {
+    return {
+      descricao: ""
     }
   }
 });
@@ -17,7 +24,7 @@ export default defineComponent({
   <div class="box">
     <div class="columns">
       <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
-        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?" />
+        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?" v-model="descricao" />
       </div>
       <div class="column">
         <TemporizadorFix @aoTemporizadorFinalizado="FinalizarTarefa" />
