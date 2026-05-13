@@ -1,31 +1,28 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import Cronometro from "./Cronometro.vue";
 
 export default defineComponent({
   name: "FormularioFix",
-  data () {
+  data() {
     return {
       tempoEmSegundos: 0,
       cronometro: 0
     }
   },
-  computed: {
-    tempoDecorrido () : string {
-      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11,8)
-    }
-  },
   methods: {
-    iniciar () {
+    iniciar() {
       // começar a contagem
       // 1 seg = 1000 ms
       this.cronometro = setInterval(() => {
-        this.tempoEmSegundos += 1        
+        this.tempoEmSegundos += 1
       }, 1000)
     },
-    finalizar () {
+    finalizar() {
       clearInterval(this.cronometro)
     }
-  }
+  },
+  components: { Cronometro } 
 });
 </script>
 
@@ -33,26 +30,12 @@ export default defineComponent({
 <template>
   <div class="box">
     <div class="columns">
-      <div
-        class="column is-8"
-        role="form"
-        aria-label="Formulário para criação de uma nova tarefa"
-      >
-        <input
-          type="text"
-          class="input"
-          placeholder="Qual tarefa você deseja iniciar?"
-        />
+      <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
+        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?" />
       </div>
       <div class="column">
-        <div
-          class="is-flex is-align-items-center is-justify-content-space-between"
-        >
-          <section>
-            <strong>
-              {{ tempoDecorrido }}
-            </strong>
-          </section>
+        <div class="is-flex is-align-items-center is-justify-content-space-between">
+          <Cronometro :tempoEmSegundos="tempoEmSegundos" />
           <button class="button" @click="iniciar">
             <span class="icon">
               <i class="fas fa-play"></i>
