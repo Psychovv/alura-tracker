@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'TempoDecorrido',
+    name: 'CronometroFix',
     props: {
         tempoEmSegundos: {
             type: Number,
