@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue'
-import Formulario from './components/Formulario.vue'
+import FormularioFix from './components/Formulario.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     BarraLateral,
-    Formulario
+    FormularioFix
   }
 });
 </script>
@@ -18,7 +18,7 @@ export default defineComponent({
       <BarraLateral />
     </div>
     <div class="column is-three-quarter">
-      <Formulario />
+      <FormularioFix />
       <!-- sera implementado mais tarde -->
     </div>
   </main>
