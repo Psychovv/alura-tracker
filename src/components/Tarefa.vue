@@ -1,33 +1,40 @@
+
+
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType } from 'vue';
 import CronometroFix from "./Cronometro.vue";
-import ITarefa from '../interfaces/ITarefa'
-import BoxFix from './Box.vue'
+import ITarefa from "../interfaces/ITarefa";
 
 export default defineComponent({
-  name: "TarefaFix",
+  name: 'TarefaFix',
   components: {
     CronometroFix,
-    BoxFix
   },
   props: {
     tarefa: {
       type: Object as PropType<ITarefa>,
       required: true
     }
+  },
+  computed: {
+    tempoGasto () : string {
+      return new Date(this.tarefa.duracaoEmSegundos * 1000)
+        .toISOString()
+        .substr(11, 8)
+    }
   }
 });
 </script>
 
-
 <template>
-  <BoxFix>
+  <Box>
     <div class="columns">
-      <div class="column is-7">{{ tarefa.descricao || 'Tarefa sem descrição' }}</div>
+      <div class="column is-7">
+        {{ tarefa.descricao || 'Tarefa sem descrição' }}
+      </div>
       <div class="column">
         <CronometroFix :tempoEmSegundos="tarefa.duracaoEmSegundos"/>
       </div>
     </div>
-  </BoxFix>
+  </Box>
 </template>
-

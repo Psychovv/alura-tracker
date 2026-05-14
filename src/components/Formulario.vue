@@ -1,22 +1,22 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import TemporizadorFix from './Temporizador.vue'
+import TemporizadorFix from "./Temporizador.vue";
 
 export default defineComponent({
-  name: "FormulárioFix",
+  name: "FormularioFix",
   emits: ['aoSalvarTarefa'],
   components: {
-    TemporizadorFix
+    TemporizadorFix,
   },
-  data () {
+  data () { 
     return {
-      descricao: ''
+      descricao: ''      
     }
   },
   methods: {
-    finalizarTarefa (tempoDecorrido: number) : void {
+    salvarTarefa (tempoEmSegundos: number) : void {    
       this.$emit('aoSalvarTarefa', {
-        duracaoEmSegundos: tempoDecorrido,
+        duracaoEmSegundos: tempoEmSegundos,
         descricao: this.descricao
       })
       this.descricao = ''
@@ -26,30 +26,30 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="box formulario">
+  <div class="box">
     <div class="columns">
-      <div
-        class="column is-8"
-        role="form"
-        aria-label="Formulário para criação de uma nova tarefa"
-      >
+      <div class="column is-7" role="form" aria-label="Formulário para iniciar uma nova tarefa">
         <input
-          type="text"
           class="input"
+          type="text"
           placeholder="Qual tarefa você deseja iniciar?"
           v-model="descricao"
         />
       </div>
       <div class="column">
-        <TemporizadorFix @aoTemporizadorFinalizado="finalizarTarefa"/>
+        <TemporizadorFix @aoFinalizarTarefa="salvarTarefa"/>
       </div>
     </div>
   </div>
 </template>
 
-<style>
-.formulario {
-  color: var(--texto-primario);
+
+<style scoped>
+.button {
+  margin-left: 8px;
+}
+.box {
   background-color: var(--bg-primario);
+  color: var(--texto-primario);
 }
 </style>

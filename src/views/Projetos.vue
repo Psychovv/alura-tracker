@@ -1,11 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-
-interface IProjeto {
-  nome: string;
-  id: string;
-}
-
+import IProjeto from "../interfaces/IProjeto";
 export default defineComponent({
   name: "Projetos",
   data() {
@@ -60,7 +55,6 @@ export default defineComponent({
     </table>
   </section>
 </template>
-
 
 
 <style scoped>
