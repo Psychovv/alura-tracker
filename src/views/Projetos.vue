@@ -1,3 +1,27 @@
+<script lang="ts">
+import { defineComponent } from "vue";
+import IProjeto from "./interfaces/IProjeto";
+export default defineComponent({
+  name: "Projetos",
+  data() {
+    return {
+      nomeDoProjeto: "",
+      projetos: [] as IProjeto[],
+    };
+  },
+  methods: {
+    salvar() {
+      const projeto: IProjeto = {
+        nome: this.nomeDoProjeto,
+        id: new Date().toISOString(),
+      };
+      this.projetos.push(projeto);
+      this.nomeDoProjeto = "";
+    },
+  },
+});
+</script>
+
 <template>
   <section class="projetos">
     <h1 class="title">Projetos</h1>
@@ -32,29 +56,7 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import IProjeto from "../interfaces/IProjeto";
-export default defineComponent({
-  name: "Projetos",
-  data() {
-    return {
-      nomeDoProjeto: "",
-      projetos: [] as IProjeto[],
-    };
-  },
-  methods: {
-    salvar() {
-      const projeto: IProjeto = {
-        nome: this.nomeDoProjeto,
-        id: new Date().toISOString(),
-      };
-      this.projetos.push(projeto);
-      this.nomeDoProjeto = "";
-    },
-  },
-});
-</script>
+
 
 <style scoped>
 .projetos {

@@ -1,13 +1,3 @@
-<template>
-    <Formulario @aoSalvarTarefa="salvarTarefa"/>
-    <div class="lista">
-        <Box v-if="semTarefas">
-            Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
-        </Box>
-        <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
-    </div>
-</template>
-
 <script lang="ts">
 import { defineComponent } from "vue";
 import Formulario from "../components/Formulario.vue";
@@ -39,3 +29,15 @@ export default defineComponent({
   }
 });
 </script> 
+
+
+
+<template>
+    <Formulario @aoSalvarTarefa="salvarTarefa"/>
+    <div class="lista">
+        <Box v-if="semTarefas">
+            Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
+        </Box>
+        <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
+    </div>
+</template>
