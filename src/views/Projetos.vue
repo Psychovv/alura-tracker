@@ -1,6 +1,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import IProjeto from "./interfaces/IProjeto";
+
+interface IProjeto {
+  nome: string;
+  id: string;
+}
+
 export default defineComponent({
   name: "Projetos",
   data() {
