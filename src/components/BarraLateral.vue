@@ -2,15 +2,37 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'BarraLateral'
+  name: 'BarraLateral',
+  emits: ['aoTemaAlterado'],
+  data() {
+    return {
+      modoEscuro: false
+    }
+  },
+  computed: {
+    textoBotao() {
+      if (this.modoEscuro) {
+        return 'Light mode'
+      } else {
+        return 'Dark mode'
+      }
+    }
+  },
+  methods: {
+    alterarTema() {
+      this.modoEscuro = !this.modoEscuro
+      this.$emit('aoTemaAlterado', this.modoEscuro)
+    }
+  }
 })
 </script>
 
 <template>
   <header>
-      <h1>
-        <img src="../assets/logo.png" alt="">  
-      </h1>
+    <h1>
+      <img src="../assets/logo.png" alt="">
+    </h1>
+    <button class="button" @click="alterarTema">{{ textoBotao }}</button>
   </header>
 </template>
 
@@ -21,6 +43,7 @@ header {
   width: 100%;
   height: 100vh;
 }
+
 @media only screen and (max-width: 768px) {
   header {
     padding: 2.5rem;
