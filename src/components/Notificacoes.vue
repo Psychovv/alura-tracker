@@ -50,5 +50,3 @@ export default defineComponent({
   z-index: 105;
 }
 </style>
-
-
