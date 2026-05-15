@@ -1,7 +1,7 @@
 <script lang="ts">
 import { useStore } from "@/store";
 import { computed, defineComponent } from "vue";
-import { EXCLUIR_PROJETO } from '@/store/tipo-mutacoes'
+import { EXCLUIR_PROJETO } from '../../store/tipo-mutacoes'
 
 export default defineComponent({
   name: "Lista",

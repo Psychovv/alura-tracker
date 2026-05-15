@@ -21,7 +21,7 @@
 import { useStore } from "@/store";
 import { defineComponent } from "vue";
 
-import { ALTERA_PROJETO, ADICIONA_PROJETO, NOTIFICAR } from '@/store/tipo-mutacoes'
+import { ALTERA_PROJETO, ADICIONA_PROJETO, NOTIFICAR } from '../../store/tipo-mutacoes'
 import { TipoNotificacao } from "@/interfaces/INotificacao";
 
 export default defineComponent({
