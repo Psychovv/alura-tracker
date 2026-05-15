@@ -1,16 +1,26 @@
+<template>
+    <Formulario @aoSalvarTarefa="salvarTarefa"/>
+    <div class="lista">
+        <BoxFix v-if="semTarefas">
+            Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
+        </BoxFix>
+        <TarefaFix v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
+    </div>
+</template>
+
 <script lang="ts">
 import { defineComponent } from "vue";
 import Formulario from "../components/Formulario.vue";
-import Tarefa from "../components/Tarefa.vue";
-import Box from "../components/Box.vue";
+import TarefaFix from "../components/Tarefa.vue";
+import BoxFix from "../components/Box.vue";
 import ITarefa from "../interfaces/ITarefa"
 
 export default defineComponent({
   name: "App",
   components: {
     Formulario,
-    Tarefa,
-    Box
+    TarefaFix,
+    BoxFix  
   },
   data () {
     return {
@@ -28,16 +38,4 @@ export default defineComponent({
     }
   }
 });
-</script> 
-
-
-
-<template>
-    <Formulario @aoSalvarTarefa="salvarTarefa"/>
-    <div class="lista">
-        <Box v-if="semTarefas">
-            Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
-        </Box>
-        <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
-    </div>
-</template>
+</script>
