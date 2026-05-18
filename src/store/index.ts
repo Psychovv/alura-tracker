@@ -8,6 +8,7 @@ import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS, REMOVER_PROJETO } f
 import http from "../http"
 
 export interface Estado {
+    projeto: any;
     projetos: IProjeto[],
     notificacoes: INotificacao[]
 }

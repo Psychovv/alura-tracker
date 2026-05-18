@@ -56,7 +56,7 @@ export default defineComponent({
       emit('aoSalvarTarefa', {
         duracaoEmSegundos: tempoEmSegundos,
         descricao: descricao.value,
-        projeto: projetos.value.find(proj => proj.id == idProjeto.value)
+        projeto: projetos.value.find((proj: { id: string; }) => proj.id == idProjeto.value)
       })
       descricao.value = ''
     }
