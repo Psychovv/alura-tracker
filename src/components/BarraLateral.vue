@@ -1,28 +1,3 @@
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "BarraLateral",
-  emits: ['aoAlterarModo'],
-  data () {
-    return {
-      modoEscuro: false
-    }
-  },
-  methods: {
-    alterarModo () : void {
-      this.modoEscuro = !this.modoEscuro
-      this.$emit('aoAlterarModo', this.modoEscuro)
-    }
-  },
-  computed: {
-    textoBtn () : string {
-      return this.modoEscuro ? 'claro' : 'escuro'
-    }
-  }
-});
-</script>
-
 <template>
   <header>
     <h1>
@@ -50,7 +25,30 @@ export default defineComponent({
   </header>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
 
+export default defineComponent({
+  name: "BarraLateral",
+  emits: ['aoAlterarModo'],
+  data () {
+    return {
+      modoEscuro: false
+    }
+  },
+  methods: {
+    alterarModo () : void {
+      this.modoEscuro = !this.modoEscuro
+      this.$emit('aoAlterarModo', this.modoEscuro)
+    }
+  },
+  computed: {
+    textoBtn () : string {
+      return this.modoEscuro ? 'claro' : 'escuro'
+    }
+  }
+});
+</script>
 <style scoped>
 h1 {
   text-align: center;
